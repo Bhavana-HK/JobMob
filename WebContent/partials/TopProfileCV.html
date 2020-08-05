@@ -1,0 +1,144 @@
+<style>
+hr { background-color: black; height: 2px; border: 0; margin:0; }
+</style>
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/SignOut">Sign Out</a>
+    </nav>
+    
+    <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+    	<ul class="nav ">
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/NewJobPost">Create Job Post  </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/MyJob">Job Posts & Responses </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/searchEmployeeSkills">Search Applicants </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/topProfiles">Top 5 Applicants </a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+<div>
+    <div>
+    	<div class="overlay"></div>
+      	<div class="container">
+        	<div class="row">
+        		<div class="col-md-10 mx-auto" style ="border-style: solid">
+        		<div ng-if="CV.firstName!=null">
+        			<br>
+        			<hr><h2>{{CV.firstName | uppercase}} {{CV.lastName | uppercase}}</h2><hr class="hr">
+        			<br/>
+        			<hr>
+        			</div>
+        			<div ng-if=" CV.email!=null || CV.phoneNo > 0 || CV.addressLine1!=null" >
+        			<h5 >Contact Information</h5><hr>
+        			<div class="col-md-4">
+        				<table class="table table-borderless">
+        					<tr ng-if="CV.email!=null">
+        						<td>Email</td>
+        						<td>{{CV.email}}</td>
+        					</tr>
+        					<tr ng-if="CV.phoneNo>0">
+        						<td>Phone Number</td>
+        						<td>{{CV.phoneNo}}</td>
+        					</tr>
+        					<tr ng-if="CV.addressLine1!=null">
+        						<td rowspan="3">Address</td>
+        						<td>{{CV.addressLine1}}</td>
+        						<tr><td>{{CV.addressLine2}}</td></tr>
+        						<tr><td>{{CV.addressLine3}}</td></tr>
+        					</tr>
+        				</table>
+        			</div>
+        			<br>
+        			</div>
+        			<div ng-show="CV.educationInfoList!=null && CV.educationInfoList.length>0">
+	        			<hr><h5>Educational Information</h5><hr>
+	    				
+	    				<table class="table table-hover table-bordered">
+	  					<thead class="thead-light">
+	      				<tr>
+	      					<th>Sl. No</th>
+	        				<th>Institute</th>
+	        				<th>Course</th>
+	        				<th>Start Date</th>
+	        				<th>End Date</th>
+	        				<th>Percentage</th>
+	      				</tr>
+	    				</thead>
+	    				<tbody>
+	    					<tr ng-model="CV.educationInfoList" ng-repeat="k in CV.educationInfoList">
+	    						<td>{{$index +1}}</td>
+								<td>{{k.institute}}</td>
+								<td>{{k.course}}</td>
+								<td>{{k.startDate |  date:'MMM-yyyy '}}</td>
+								<td>{{k.endDate |  date:'MMM-yyyy '}}</td>
+								<td>{{k.percentage}}</td>
+		 					</tr>
+	    				</tbody>
+	  					</table>
+	  					<br/>
+  						<br>
+  					</div>
+  					
+  					<div ng-show="CV.workExpList!=null && CV.workExpList.length>0">
+	  					<hr><h5>Work Experience</h5><hr>
+	    				<br><div>{{ "Has worked for "+CV.experienceInYears+" Years and "+CV.experienceInMonths+" Months"}}</div>
+	    				<table class="table table-hover table-bordered">
+	  					<thead class="thead-light">
+	      				<tr>
+	      					<th>Sl. No</th>
+	        				<th>Job Title</th>
+	        				<th>Company</th>
+	        				<th>Start Date</th>
+	        				<th>End Date</th>
+	      				</tr>
+	    				</thead>
+	    				<tbody>
+	    					<tr ng-model="CV.workExpList" ng-repeat="k in CV.workExpList">
+	    						<td>{{$index +1}}</td>
+								<td>{{k.jobTitle}}</td>
+								<td>{{k.companyName}}</td>
+								<td>{{k.startDate |  date:'MMM-yyyy '}}</td>
+								<td>{{k.endDate |  date:'MMM-yyyy '}}</td>
+		 					</tr>
+	    				</tbody>
+	  					</table>
+	  					<br/>
+	  					<br>
+	  				</div>
+	  				
+	  				<div ng-show="CV.certifications!=null">
+	  					<hr><h5>Certifications</h5><hr>
+	  					<span style="white-space: pre-line">{{CV.certifications}}</span>
+	  					<br/>
+	  				</div>
+	  				<br>
+	  				<div ng-show="CV.interests!=null">
+  						<hr><h5>Interests & Skills</h5><hr>
+  						<span style="white-space: pre-line">{{CV.interests}}</span>
+  						<br/>
+  					</div>
+  					<br>
+  					<div ng-show="CV.reference!=null">
+  						<hr><h5>References</h5><hr>
+  						<span style="white-space: pre-line">{{CV.reference}}</span>
+  						<br/>
+  					</div>
+  					<br>
+  				</div>
+  			</div>
+  			<br>
+  			<div class="row">
+        		<div class="col-md-4 mx-auto" >
+  					<button type="button" class="btn btn-primary btn-block" ng-click="CV.closeTopEmployeeProfile()">Close</button>
+  				</div>
+    		</div>		
+    			
+    		
+    	</div>
+    				
+    </div>
+</div>
+
+

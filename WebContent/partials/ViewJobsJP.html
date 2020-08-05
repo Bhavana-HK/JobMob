@@ -1,0 +1,141 @@
+<style>
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* vertical spacing between columns */
+
+[class*="col-"] {
+  margin-bottom: 30px;
+}
+
+.content {
+  height: 100%;
+  padding: 20px 20px 10px;
+  color: #fff;
+}
+
+
+/* Demo backgrounds and styling*/
+
+.colour-1 {
+  background: #48868F;
+  color: #fff;
+}
+
+.colour-2 {
+  background: #50C2D1;
+}
+
+.colour-0 {
+  background: #0D343A;
+}
+
+
+.content h5 {
+  margin-top: 0px;
+  font-weight: 100;
+}
+
+h1 {
+  font-weight: 300;
+  margin-bottom: 40px;
+}
+</style>
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/SignOut">Sign Out</a>
+    </nav>
+    
+    <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+    	<ul class="nav ">
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/NewJobPost">Create Job Post  </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/MyJob">Job Posts & Responses </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/searchEmployeeSkills">Search Applicants </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/topProfiles">Top 5 Applicants </a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+
+<div>
+<br>
+<br>
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row row-flex">
+			<div class="col-md-10 mx-auto">
+				<div class="content colour-0">
+					<h1>{{JP.recruiter| uppercase}}</h1>
+				</div>
+			</div>
+			
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="content colour-2">
+					<h5>Minimum Experience Required (in Years)</h5>
+					<p>{{JP.minExp}}</p>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="content colour-1">
+					<h5>The Minimum Required Skills</h5>
+					<p>{{JP.requiredSkills}}</p>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="content colour-2">
+					<h5>Employment Type</h5>
+					<p>{{JP.employmentType}}</p>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="content colour-1">
+					<h5>Job Role</h5>
+					<p>{{JP.role}}</p>
+				</div>
+			</div>
+			
+			
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="content colour-2">
+					<h5>Location of Posting</h5>
+					<p>{{JP.location}}</p>
+				</div>
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="content colour-1">
+					<h5>Contact Information</h5>
+					<p>{{JP.contactInfo}}</p>
+					
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="content colour-2">
+					<h5>Company profile</h5>
+					<p>{{JP.companyProfile}}</p>
+				</div>
+			</div>
+			
+			<div class="col-md-6 col-sm-6 col-xs-12">
+				<div class="content colour-1">
+					<h5 class="h5">Job description</h5>
+					<p>{{JP.jobDesc}}</p>
+					
+				</div>
+			</div>
+			
+			<div class="col-md-10 mx-auto">
+				<div class="content colour-0">
+					<button class="btn btn-block" style="background-color: transparent;border-color: transparent;box-shadow: none; color:white" ng-click="JP.close()"><h5>Close</h5> </button>
+					<br> 
+				</div>
+			</div>
+				
+			</div>
+			</div>
+		</div>
+

@@ -1,0 +1,49 @@
+<style>
+.box2 {
+  display: inline-block;
+  width: 300px;
+  height: 200px;
+  margin: 1em;
+}
+</style>
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/SignOut">Sign Out</a>
+    </nav>
+    
+    <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+    	<ul class="nav ">
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/NewJobPost">Create Job Post  </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/MyJob">Job Posts & Responses </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/searchEmployeeSkills">Search Applicants </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/topProfiles">Top 5 Applicants </a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+
+<div ng-init="getMyJob()">
+	<div class="overlay"></div>
+	
+	<div class="col-12 col-md-9 mb-2 mx-auto"><h2 ng-if="jobPostList.length < 1"> You have not posted any job requirement yet</h2></div>
+	
+	<div ng-repeat="job in jobPostList" class="box2">
+	<div><br>
+			<a href="#/ViewMyJobJP/{{job.jobId}}">
+				<div class=" text-center font-weight-bold" style="max-height:55px; min-height:55px; background-color: #0D343A; color:white; font-size:20px">
+				{{job.recruiter| uppercase}}</div> 
+			</a>
+			<div class="p-1" style="background-color: #50C2D1">
+				<p style="text-align: center" class="text-white">
+					
+					{{job.minExp}} Yrs Exp, {{job.employmentType}},<br/> as a {{job.role | uppercase}}
+					<br/>
+					<button class="btn btn-brand btn-github" style="color:black" ng-click=viewApplicants(job)>View Applicants</button>
+				</p>
+				
+			</div>
+		</div>
+	</div>
+</div>

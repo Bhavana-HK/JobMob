@@ -1,0 +1,85 @@
+<style>
+	input.transparent-input{
+		border-radius: 0;
+       background-color:transparent !important;
+       border-left: none !important;
+       border-right: none !important;
+       border-top: none !important;
+       outline:0;
+       border-bottom: 2px solid white;
+    }
+    input[type="email"]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+	}
+    .form-control::-webkit-input-placeholder { color: lightblue; }  /* WebKit, Blink, Edge */
+	.form-control:-moz-placeholder { color: lightblue; }  /* Mozilla Firefox 4 to 18 */
+	.form-control::-moz-placeholder { color: lightblue; }  /* Mozilla Firefox 19+ */
+	.form-control:-ms-input-placeholder { color: lightblue; }  /* Internet Explorer 10-11 */
+	.form-control::-ms-input-placeholder { color: lightblue; }  /* Microsoft Edge */
+	.left {width: 90%;}
+	.right {width: 10%;}
+	.column {float: left;}
+</style>
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/signin">Sign In</a>
+    </nav>
+	<header class="masthead text-white text-center">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row" >
+        	<div class="col-xl-9 mx-auto border border-white" style="background-color:rgba(72,72,72,0.4);padding:40px;">
+          <div >
+            <h2 class="mb-8">Create your CV/Resume now in the easiest way</h2>
+          </div>
+		
+          <div class="col-md-10 mx-auto">
+            <form  ng-controller="SignUpController" ng-submit="signup.submitForm()" >
+              <div class="form-row">
+              
+				<div class="column left">
+                	<input type="email" ng-model="signup.email" class="form-control transparent-input form-control-lg" placeholder="Enter your email..." style="color:white" required>
+				</div>
+				<div class="column right" style="align-items: flex-end;display: flex"><img ng-click="signup.removeEmail()" src="img/cancel3.png"  height="35em" width="35em" align="bottom"></div>
+					
+				<div class="column left">	
+					<input type="password" ng-model="signup.password"  class="form-control transparent-input form-control-lg" placeholder="Enter a password" style="color:white">
+				</div>
+				<div class="column right" style="align-items: flex-end;display: flex"><img ng-click="signup.removePassword()" src="img/cancel3.png" height="35em" width="35em" align="middle"></div>
+				
+				<div >
+					<span ng-show="!signup.password.$error.required &&  signup.password.$error.pattern && signup.password.$dirty">Must contain one at least one number and min of 6 charecters</span>
+				</div>
+				<div class="column left">
+					<input type="password" ng-model="signup.repassword" class="form-control transparent-input form-control-lg" placeholder="Re enter the password" style="color:white">
+				</div>
+				<div class="column right" style="align-items: flex-end;display: flex"><img ng-click="signup.removeRepassword()" src="img/cancel3.png" height="35em" width="35em" align="middle"></div>
+				<span ng-show="signup.password != signup.repassword">Your passwords must match.</span>
+				<div class="col-md-10 mx-auto">
+					<div class="form-control form-control-lg" style="background-color:transparent !important; border:none !important;">
+					<div class="radio " ng-init="signup.userType=1">
+						<lable style="color:white"><input type="radio" ng-model="signup.userType" ng-value="1" class="transparent-input">Applicant</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<lable><input type="radio" ng-model="signup.userType" ng-value="2" class="transparent-input">Recruiter</label>
+					</div>
+					</div>
+				</div>
+				</div>
+                
+                <div class="col-md-10 mx-auto">
+					<button type="submit" ng-disabled="signup.password != signup.repassword" class="btn btn-block btn-lg btn-primary">Sign up!</button>
+                </div>
+                <div class="col-md-10 mx-auto">
+                <br><div ng-bind="signup.message"></div>
+                </div>
+               
+              </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    
+</div>

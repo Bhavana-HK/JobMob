@@ -1,0 +1,256 @@
+<style>
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+.tab {
+    float: left;
+    border: 1px solid #ccc;
+    background-color: #e1c3c3;
+    width: 15%;
+    height: 450px;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 1px solid #ccc;
+    width: 85%;
+    border-left: none;
+    height: 100%;
+}
+</style>
+
+<div ng-init="newCV.defaultView(event, 'basicInfo')">
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/SignOut">Sign Out</a>
+    </nav>
+    
+    <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+    	<ul class="nav ">
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/NewCVForm">Create/Edit CV  </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/uploadResume">Upload Resume </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/ViewJobs">View Jobs </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/AppliedJobs">Applied Jobs </a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+<br/>
+<div class="overlay"></div>
+<div class="container">
+<div class=row>
+<div class="col-md-10">
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'basicInfo')">Basic Information</button>
+  <button class="tablinks" onclick="openTab(event, 'education')">Education Information</button>
+  <button class="tablinks" onclick="openTab(event, 'WorkExp')">Work Experience</button>
+  <button class="tablinks" onclick="openTab(event, 'skills')">Skills</button>
+  <button class="tablinks" onclick="openTab(event, 'ref')">References</button>
+</div>
+<form ng-submit="newCV.submit()" novalidate>
+<!-- Tab content -->
+<div id="basicInfo" class="tabcontent">
+	<br/>
+  <h3>Basic Information</h3>
+  <br/>
+  				<div class="form-group ">
+			        <label for="firstName">First Name</label>
+			        <input type="text" ng-model="newCV.firstName" class="form-control form-control-sm" id="firstName" placeholder="First name" required>  
+			    </div>
+			    <div class="form-group">
+			        <label for="lastName">Last Name</label>
+			        <input type="text" ng-model="newCV.lastName" class="form-control form-control-sm" id="lastName" placeholder="Last name" >
+			    </div>
+			    <div class="form-group">
+	        		<label for="email">Email</label>
+	        		<input type="email" ng-model="newCV.email" class="form-control form-control-sm" id="email" placeholder="Email" required>
+	    		</div>
+			    <div class="form-group">
+			        <label for="phoneNo">Phone Number</label>
+			        <input type="number" ng-model="newCV.phoneNo" class="form-control form-control-sm" id="phoneNo" placeholder="Phone Number" required>
+			    </div>
+			    <div class="form-group">
+			        <label for="experience">Experience</label><br/>
+			        <div class="form-inline">
+			        <lable>Years</lable><select class="form-control" ng-model="newCV.experienceInYears"  id="experienceInYears" required>
+			        	<option ng-value="" selected disabled hidden>Choose here</option>
+			        	<option ng-value="0" >0</option>
+  						<option ng-repeat="n in [].constructor(40) track by $index+1" ng-value="{{$index+1}}">{{$index+1}}</option>
+					</select>
+					<lable>Months</lable><select class="form-control" ng-model="newCV.experienceInMonths"  id="experienceInMonths" required>
+  						<option ng-value="" selected disabled hidden>Choose here</option>
+  						<option ng-value="0" >0</option>
+  						<option ng-repeat="n in [].constructor(11) track by $index+1" ng-value="{{$index+1}}" >{{$index+1}}</option>
+					</select>
+			    	</div>
+			    </div>
+			    <div class="form-group">
+			        <label for="addressLine1">Address Line 1</label>
+			        <input type="text" ng-model="newCV.addressLine1" class="form-control form-control-sm" id="addressLine1" placeholder="Address Line 1" required>
+			        <label for="addressLine2">Address Line 2</label>
+			        <input type="text" ng-model="newCV.addressLine2" class="form-control form-control-sm" id="addressLine2" placeholder="Address Line 2" required>
+			        <label for="addressLine3">Address Line 3</label>
+			        <input type="text" ng-model="newCV.addressLine3" class="form-control form-control-sm" id="addressLine3" placeholder="Address Line 3">
+			    </div>
+</div>
+
+<div id="education" class="tabcontent">
+  <h3>Education</h3>
+  
+  <div class="form-group">
+  <div style="overflow-x:auto; overflow-y:auto;">
+  	<table id="edutbl" class="table table-hover">
+  	<thead>
+      <tr>
+        <th>Name of Institute</th>
+        <th>Course</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Percentage Acquired</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    	<tr ng-model="newCV.educationInfoList" ng-repeat="k in newCV.educationInfoList">
+					<td><input type="text" ng-model="k.institute"></td>
+					<td><input type="text" ng-model="k.course"></td>
+					<td><input type="date" ng-model="k.startDate"></td>
+					<td><input type="date" ng-model="k.endDate"></td>
+					<td><input type="number" ng-model="k.percentage"></td>
+					<td><input type="button" value="Delete Row" onclick="removeEduLine(this)"></td>
+	 	</tr>
+    </tbody>
+  	</table>
+  	</div>
+  	<input type="button" class="button" value="Add Details" onclick="addEduField('edutbl');" />
+  </div>	
+</div>
+
+<div id="WorkExp" class="tabcontent">
+  <h3>Work Experience</h3>
+  
+  <div class="form-group">
+  <div style="overflow-x:auto; overflow-y:auto;">
+  	<table id="worktbl" class="table table-hover">
+    <thead>
+      <tr>
+        <th>Job Title</th>
+        <th>Company Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th></th>
+      </tr>
+    </thead>
+  	<tbody>
+  		<tr ng-model="newCV.workExpList" ng-repeat="k in newCV.workExpList">
+					<td><input type="text" ng-model="k.jobTitle"></td>
+					<td><input type="text" ng-model="k.companyName"></td>
+					<td><input type="date" ng-model="k.startDate"></td>
+					<td><input type="date" ng-model="k.endDate"></td>
+					<td><input type="button" value="Delete Row" onclick="removeWorkLine(this)"></td>
+	 	</tr>
+  	</tbody>
+  	</table>
+  	</div>
+  	<input type="button" class="button" value="Add Details" onclick="addWorkField('worktbl');" />
+  </div>
+</div>
+
+
+<div id="skills" class="tabcontent">
+  <h3>Skills</h3>
+  	<label for="interests">Interests & Skills</label>
+	<textarea rows="4" cols="50" ng-model="newCV.interests" class="form-control form-control-sm" id="interests" ></textarea>
+	<select id="Skills" ng-model="temp" ng-change="addSkill()" class="form-control form-control-sm" id="interests" required placeholder="Enter your interests and skills here">
+    	<option value="" selected diasbled hidden>--Choose here--</option>
+    	<option  ng-repeat="skill in skillSet" ng-value="skill">{{skill}}</option>
+  	</select>
+	<h3>Certifications</h3>
+	<label for="certifications">Certifications</label>
+	<textarea rows="4" cols="50" ng-model="newCV.certifications" class="form-control form-control-sm" id="certifications" required placeholder="Enter your certifications here"></textarea>				
+</div>
+
+	<div id="ref" class="tabcontent">
+		<h3>References</h3>
+		<div class="form-group ">
+			<label for="reference">References</label>
+  			<textarea rows="4" cols="50" ng-model="newCV.reference" class="form-control form-control-sm" id="reference" required placeholder="Enter your references here" ></textarea>
+		</div>
+		
+		
+		<div class="form-group" ng-if="newCV.membership==1">
+			<button type="submit"  class="btn btn-primary btn-sm ">Submit</button>
+		</div>	
+		
+		<div ng-if="newCV.membership!=1"> 
+		
+			<!-- Button trigger modal -->
+			<button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+				Submit
+			</button>
+	
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLongTitle">Subscription for Premium Membership</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+					        You can gain privileges by subscribing to be a premium customer. Would you like to be a premium customer?
+						</div>
+						<div class="modal-footer">
+							<button data-dismiss="modal" aria-label="Close" type="button" class="btn btn-secondary" ng-click="newCV.submit() ">Nope</button>
+							<button data-dismiss="modal" aria-label="Close" type="button" class="btn btn-primary" ng-click="newCV.subscribe()">Yes!</button>
+						</div>
+					</div>
+				</div>
+			</div >
+		</div>
+	</div>
+
+</form>
+</div>
+</div>
+</div>
+</div>

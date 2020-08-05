@@ -1,0 +1,51 @@
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/SignOut">Sign Out</a>
+    </nav>
+    
+    <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+    	<ul class="nav ">
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/NewCVForm">Create/Edit CV  </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/uploadResume">Upload Resume </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/ViewJobs">View Jobs </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/AppliedJobs">Applied Jobs </a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+
+<header class="masthead text-white text-center">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-9 mx-auto">
+				<h2 class="mb-5">Upload Your resume in *.doc or *.docx format</h2>
+			</div>
+		 	<div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+				<form action="upload" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="userId" id="user" value="">
+					<div class="btn btn-block btn-lg btn-dark ">
+					<input  type="file" name="file"/><br>
+					</div>
+					<br>
+					<input class="btn btn-lg btn-brand btn-primary" type="submit" value= "Upload">
+				</form>
+			</div> 
+			
+				<div class="col-xl-9 mx-auto" ng-show="resume"> 
+				<br><br>
+				<form action="download" method="get">
+				<input type="hidden" name="userId1" id="user1" value="">
+				<h4 class="mb-5">Download the previous uploaded Resume
+				<input type="submit" value="Here" class="btn btn-brand btn-secondary"/></h4>
+				</form>
+				
+		 		</div> 
+			<p id="demo"></p>
+		</div>
+	</div>
+</header>	
+
+				

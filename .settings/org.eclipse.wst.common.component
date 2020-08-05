@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="CVMaker">
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/" source-path="/WebContent"/>
+        <dependent-module archiveName="jackson-mapper-asl-1.9.13.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/bhavana.k01/Downloads/jackson-mapper-asl-1.9.13.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="jackson-core-asl-1.9.13.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/bhavana.k01/Downloads/jackson-core-asl-1.9.13.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections4-4.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/C:/Users/bhavana.k01/Documents/jars_9_nov/commons-collections4-4.2/commons-collections4-4.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="CVMaker"/>
+        <property name="java-output-path" value="/CVMaker/build/classes"/>
+    </wb-module>
+</project-modules>

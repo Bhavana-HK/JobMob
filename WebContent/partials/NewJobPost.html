@@ -1,0 +1,87 @@
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/SignOut">Sign Out</a>
+    </nav>
+    
+    <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+    	<ul class="nav ">
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/NewJobPost">Create Job Post  </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/MyJob">Job Posts & Responses </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/searchEmployeeSkills">Search Applicants </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/topProfiles">Top 5 Applicants </a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+
+<div>
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+			<div class="col-md-10">
+				<br/>
+				<br/>
+				<h5 class="mb-5">Fill The Form To Create A New Job Post</h2>
+			</div>
+			<div class="col-md-10">
+				<form class= "form-horizontal" ng-submit="newJP.submit()">
+				    <div class="form-group ">
+				        <label for="recruiter">Recruiter Name</label>
+				        <input type="text" ng-model="newJP.recruiter" class="form-control form-control-sm" id="recruiter" placeholder="Recruiter name">  
+				    </div>
+				    <div class="form-group">
+				        <label for="minExp">Minimum Experience Required (in Years)</label>
+				        <select class="form-control" ng-model="newJP.minExp"  id="minExp">
+			        	<option value="" selected disabled hidden>Choose here</option>
+			        	<option ng-value="0" >0</option>
+  						<option ng-repeat="n in [].constructor(40) track by $index+1" value="{{$index+1}}" >{{$index+1}}</option>
+					</select>
+				    </div>
+				    <div class="form-group ">
+				        <label for="location">Location of Posting</label>
+				        <input type="text" ng-model="newJP.location" class="form-control form-control-sm" id="location" placeholder="Location">  
+				    </div>
+				    <div class="form-group">
+				        <label for="jobDesc">Job Description</label>
+				        <textarea rows="6" cols="50" ng-model="newJP.jobDesc" class="form-control form-control-sm" id="jobDesc" placeholder="Job Description"></textarea>
+					</div>
+					<div class="form-group">
+				        <label for="requiredSkills">Required Skills</label>
+				        <textarea rows="6" cols="50" ng-model="newJP.requiredSkills" class="form-control form-control-sm" id="requiredSkills" placeholder="Required Skills"></textarea>
+						<select ng-model="temp" ng-change="addSkill()" class="form-control form-control-sm">
+								<option value="" selected diasbled hidden>--Choose here--</option>
+    							<option  ng-repeat="skill in skillSet" ng-value="skill">{{skill}}</option>
+  						</select>
+					</div>
+					<div class="form-group ">
+				        <label for="role">Job Role</label>
+				        <input type="text" ng-model="newJP.role" class="form-control form-control-sm" id="role" placeholder="Job Role">  
+				    </div>
+				    <div class="form-group ">
+				        <label for="employmentType">Employment Type</label>
+				        <select class="form-control" ng-model="newJP.employmentType"  id="employmentType">
+				        	<option value="" selected disabled hidden>Choose here</option>
+	  						<option value="Full Time" >Full Time</option>
+	  						<option value="Half Time" >Half Time</option>
+	  						<option value="Internship" >Internship</option>
+						</select>
+				    </div>
+				    <div class="form-group">
+				        <label for="companyProfile">Company Profile</label>
+				        <textarea rows="8" cols="50" ng-model="newJP.companyProfile" class="form-control form-control-sm" id="companyProfile" placeholder="Company Profile"></textarea>
+					</div>
+					<div class="form-group">
+				        <label for="contactInfo">Contact Information</label>
+				        <textarea rows="4" cols="50" ng-model="newJP.contactInfo" class="form-control form-control-sm" id="contactInfo" placeholder="Contact Information"></textarea>
+					</div>
+					<div class="form-group">
+			    		<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+			    	</div>
+				</form>
+				<br><div ng-bind="newJP.message"></div>
+			</div>
+		</div>
+	</div>
+</div>

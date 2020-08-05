@@ -1,0 +1,64 @@
+<div>
+	<nav class="navbar navbar-light bg-light static-top">
+        <a class="navbar-brand" href="#!">Job Mob</a>
+        <a class="btn btn-primary" href="#/SignOut">Sign Out</a>
+    </nav>
+    
+    <nav class="navbar navbar-dark bg-dark static-top">
+    <div class="container-fluid">
+    	<ul class="nav ">
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/NewJobPost">Create Job Post  </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/MyJob">Job Posts & Responses </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/searchEmployeeSkills">Search Applicants </a></li>
+        <li><a class="btn btn-info btn-lg " style="border-radius: 0" href="#/topProfiles">Top 5 Applicants </a></li>
+        </ul>
+    </div>
+    </nav>
+</div>
+
+<div>
+    <header class="masthead text-white text-center">
+	<div class="overlay"></div>
+	
+	<div class="col-12 col-md-9 mb-2 mx-auto"><h2 ng-if="employeeLists.length < 1"> There are no applicants for this job. </h2></div>
+	<div class="container" ng-if="employeeLists.length>0" >
+		<div class="row">
+			<div class="col-md-10 mx-auto">
+				<h4 class="mb-5">Applicants for this Job are:</h4>
+          	</div>
+         </div>
+         <br/><br/>
+         <div class="row" ng-show="employeeLists">
+         	<div class="col-sm-9 mx-auto">
+         	<div >
+				<lable><h6 class="text-white">No. of People Applied: {{employeeLists.length}}</h6></lable>
+			</div>
+         	
+         		<table id="worktbl" class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Skills</th>
+						<th>Experience</th>
+					</tr>
+				</thead>
+					<tbody>
+						<tr ng-repeat="k in employeeLists | limitTo : limit">
+							<td><a style="text-decoration: none; color:white" href="#/ViewApplicantCV/{{k.userId}}">{{k.firstName}}</a></td>
+							<td>{{k.interests}}</td>
+							<td>{{k.experienceInYears+" Years "+k.experienceInMonths+" Months"}}
+						</tr>
+					</tbody>
+				</table>
+				
+			</div>
+         </div>
+         
+		</div>
+		<div class="row">
+        		<div class="col-md-4 mx-auto" >
+  					<button type="button" class="btn btn-primary btn-block" ng-click="closeViewApplicants()">Close</button>
+  				</div>
+    		</div>
+	</header>
+</div>
